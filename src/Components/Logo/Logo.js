@@ -5,7 +5,7 @@ import "./Logo.css";
 const Logo = props => (
   <div className="Logo">
     <a href={props.url}>
-      <img src={props.image} />
+      <img src={props.image} alt="Hotels" />
     </a>
   </div>
 );

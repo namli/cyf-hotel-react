@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import PrimaryButton from "./Components/PrimaryButton";
 
-const Search = () => {
+const Search = props => {
+  const [searchInput, setSearchInput] = useState();
+
+  const setSearchInputValue = e => {
+    setSearchInput(e.target.value);
+  };
+
+  const makeSearch = e => {
+    e.preventDefault();
+    props.search(searchInput);
+  };
+
   return (
     <div className="search">
       <div className="page-header">
@@ -9,7 +20,7 @@ const Search = () => {
       </div>
       <div className="row search-wrapper">
         <div className="col">
-          <form className="form-group search-box">
+          <form className="form-group search-box" onSubmit={makeSearch}>
             <label htmlFor="customerName">Customer name</label>
             <div className="search-row">
               <input
@@ -17,8 +28,10 @@ const Search = () => {
                 id="customerName"
                 className="form-control"
                 placeholder="Customer name"
+                onChange={setSearchInputValue}
               />
-              <PrimaryButton value="Search" />
+
+              <PrimaryButton />
             </div>
           </form>
         </div>
